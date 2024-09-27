@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Function to check HTML files with htmlhint
+check_html_files() {
+  if [ -f ".htmlhintrc" ]; then
+    echo "Running HTMLHint for HTML files..."
+    git diff --cached --name-only --diff-filter=ACM | grep '.html$' | while read -r file; do
+      if [ -f "$file" ]; then
+        htmlhint "$file"
+        if [ $? -ne 0 ]; then
+          echo "HTMLHint found issues in $file"
+          exit 1
+        fi
+      fi
+    done
+  else
+    echo "No .htmlhintrc file found. Skipping HTML validation."
+  fi
+}
+
+# Run HTML checks
+check_html_files
+
+# If we reach here, all checks passed
+echo "All checks passed!"
