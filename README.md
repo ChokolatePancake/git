@@ -68,4 +68,28 @@ ORIG_HEAD - точка повернення до останньої велико
 
 `git stash clear`(видаляє всі записи стешу)
 
+git hooks - скрипти, які запускаються при виконанні певних дій(в папці .git/hooks є зразки різних хуків:
+- applypatch-msg.sample
+- pre-applypatch.sample
+- pre-push.sample
+- update.sample
+- commit-msg.sample
+- pre-commit.sample
+- pre-rebase.sample
+- fsmonitor-watchman.sample
+- pre-merge-commit.sample
+- pre-receive.sample
+- post-update.sample
+- prepare-commit-msg.sample
+- push-to-checkout.sample)
 
+
+`git bisect`(для пошуку коміту з помилкою шляхом бінарного пошуку за допомогою позначення коміта як хороший чи поганий)
+Варіації команди:
+- `start`(починає процес)
+- `reset`(скасовує процес і повертає туди, звідки почали)
+- `bad` (позначити коміт як поганий, якщо не вказано конкретний коміт, то позначається поточний)
+- `good`(аналогічно з попереднім, але позначає як хороший)
+- `run <script>`(для запуску скрипта за яким автоматично перевірятиме)
+- `log`(перегляд поточного статусу, можна дописати `>*.txt` для запису в файл)
+- `replay <file>`(повторює бісекцію на основі раніше створеного файлу за допомогою `log`)
